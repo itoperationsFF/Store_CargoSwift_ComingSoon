@@ -1,24 +1,10 @@
-name: Azure Static Web Apps CI/CD
-
-on:
-  push:
-    branches:
-      - main    # or your branch
-
-jobs:
-  build_and_deploy:
-    runs-on: ubuntu-latest
-    name: Build and Deploy Job
-    steps:
-      - uses: actions/checkout@v4
-
       - name: Build And Deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_PLANT_00BE33C03 }}
+          azure_static_web_apps_api_token: ${{ secrets.GITHUB_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: "upload"                 # upload straight to the Static Web App
-          app_location: "/"                # where your index.html lives; "/" if repo root
-          api_location: ""                 # blank if you have no API
-          output_location: ""              # blank for plain static files
-          app_build_command: 'echo "no build"'  # prevents Oryx from failing when there's no build script
+          action: "upload"
+          app_location: "/"        # folder containing index.html
+          api_location: ""         # leave blank if no API
+          output_location: ""      # leave blank
+          app_build_command: 'echo "no build"'  # prevents Oryx from failing
